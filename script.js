@@ -5,6 +5,7 @@ async function imagegen() {
     const data= await res.json();
     const api =data.api;
     console.log("api: "+api);
+    console.log("try: "+data.try);
     const response = await fetch(`https://openairestapi.vercel.app/image?text=${text}&api=${api}`);
     const datas = await response.json();
     if(datas.status==401){
