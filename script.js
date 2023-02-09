@@ -1,19 +1,22 @@
 async function imagegen() {
   document.getElementById("load").innerHTML = "<p>Loading...</p>";
     let text=document.getElementById("name").value;
-    const api="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"
+    const res=await fetch("key.json");
+    const data= await res.json();
+    const api =data.api;
     const response = await fetch(`https://openairestapi.vercel.app/image?text=${text}&api=${api}`);
-    const data = await response.json();
-    if(data.status==401){
+    const datas = await response.json();
+    if(datas.status==401){
       var img = new Image();
     document.getElementById("imagehere").appendChild(img)
     img.src = "./error.png";
-    console.log(img.src);
-    }
+    console.log("bhai Error!!");
+    }else{
     var img = new Image();
     document.getElementById("imagehere").appendChild(img)
-    img.src = data.image_url;
+    img.src = datas.image_url;
     console.log(img.src);
+    }
   }
 
   var animateButton = function(e) {
