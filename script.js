@@ -1,12 +1,8 @@
 async function imagegen() {
   document.getElementById("load").innerHTML = "<p>Loading...</p>";
     let text=document.getElementById("name").value;
-    const res=await fetch("key.json");
-    const data= await res.json();
-    const api =data.api;
-    console.log("api: "+api);
-    console.log("try: "+data.try);
-    const response = await fetch(`https://openairestapi.vercel.app/image?text=${text}&api=${api}`);
+    
+    const response = await fetch(`https://openairestapi.vercel.app/oimage?text=${text}`);
     const datas = await response.json();
     if(datas.status==401){
       var img = new Image();
