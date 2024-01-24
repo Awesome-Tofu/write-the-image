@@ -1,8 +1,10 @@
 async function imagegen() {
   document.getElementById("load").innerHTML = "<p>Loading...</p>";
     let text=document.getElementById("name").value;
-    
-    const response = await fetch(`https://tofu-api.onrender.com/image_ai/?prompt=${text}`);
+    const proxyUrl = "https://cors-anywhere.herokuapp.com/";
+    const apiUrl = `https://tofu-api.onrender.com/image_ai/?prompt=${text}`;
+  
+    const response = await fetch(proxyUrl + apiUrl);
     const datas = await response.json();
     if(datas.status==401){
       var img = new Image();
